@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:10:17 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/06 18:23:32 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/07 10:59:35 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,14 @@ void	ft_rev_rotate(t_list **list)
 	*list = last;
 }
 
-/* void	ft_push(t_list **a, t_list **b)
+void	ft_push(t_list **a, t_list **b)
 {
+	t_list	*tmp;
+
 	if (!(*a))
 		return ;
-	
-} */
+	ft_create_node(b, (*a)->nb);
+	tmp = *a;
+	*a = (*a)->next;
+	free(tmp);
+}

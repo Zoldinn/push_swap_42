@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:57:21 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/06 16:45:06 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/07 11:00:05 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,41 @@ void	ft_print_list(t_list *list)
 
 int	main(void)
 {
-	t_list	*list;
+	t_list	*a;
+	t_list	*b;
 
-	list = NULL;
-	ft_create_node(&list, 1);
-	ft_print_list(list);
-	ft_create_node(&list, 2);
-	ft_print_list(list);
-	ft_create_node(&list, 3);
-	ft_print_list(list);
-	ft_create_node(&list, 4);
-	ft_print_list(list);
+	a = NULL;
+	b = NULL;
+
+	ft_create_node(&a, 1);
+	ft_create_node(&a, 4);
+	ft_create_node(&a, 2);
+	ft_create_node(&a, 3);
+	ft_print_list(a);
+
 	printf("\n--- rotate --- \n");
-	ft_rotate(&list);
-	ft_print_list(list);
-	printf("\n--- reverse rotate --- \n");
-	ft_rev_rotate(&list);
-	ft_print_list(list);
-	printf("\n--- swap --- \n");
-	ft_swap(&list);
-	ft_print_list(list);
+	ft_rotate(&a);
+	ft_print_list(a);
 
-	ft_free_list(&list);
+	printf("\n--- reverse rotate --- \n");
+	ft_rev_rotate(&a);
+	ft_print_list(a);
+
+	printf("\n--- swap --- \n");
+	ft_swap(&a);
+	ft_print_list(a);
+
+	printf("\n--- push --- \n");
+	ft_push(&a, &b);
+	ft_print_list(a);
+	ft_print_list(b);
+
+	printf("\n--- push --- \n");
+	ft_push(&a, &b);
+	ft_print_list(a);
+	ft_print_list(b);
+
+	ft_free_list(&a);
+	ft_free_list(&b);
 	return (0);
 }
