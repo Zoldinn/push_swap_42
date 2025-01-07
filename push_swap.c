@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:57:21 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/07 11:00:05 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/07 11:46:28 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(void)
 	ft_print_list(a);
 	ft_print_list(b);
 
-	ft_free_list(&a);
-	ft_free_list(&b);
+	ft_lst_free(&a);
+	ft_lst_free(&b);
 	return (0);
 }

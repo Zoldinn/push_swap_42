@@ -6,13 +6,13 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:10:17 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/07 10:59:35 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/07 11:47:31 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap(t_list **list)
+void	ft_swap(t_list **list, char *move)
 {
 	int	tmp;
 
@@ -21,7 +21,7 @@ void	ft_swap(t_list **list)
 	(*list)->next->nb = tmp;
 }
 
-void	ft_rotate(t_list **list)
+void	ft_rotate(t_list **list, char *move)
 {
 	t_list	*tmp;
 
@@ -31,7 +31,7 @@ void	ft_rotate(t_list **list)
 	tmp->next = NULL;
 }
 
-void	ft_rev_rotate(t_list **list)
+void	ft_rev_rotate(t_list **list, char *move)
 {
 	t_list	*last;
 	t_list	*cur;
@@ -45,7 +45,7 @@ void	ft_rev_rotate(t_list **list)
 	*list = last;
 }
 
-void	ft_push(t_list **a, t_list **b)
+void	ft_push(t_list **a, t_list **b, char *move)
 {
 	t_list	*tmp;
 

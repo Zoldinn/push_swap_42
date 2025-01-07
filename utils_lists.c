@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:01:26 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/06 16:45:42 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/07 11:46:54 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_list	*ft_lst_last(t_list *lst)
 	return (lst);
 }
 
-void	ft_free_list(t_list **list)
+void	ft_lst_free(t_list **list)
 {
 	t_list	*tmp;
 

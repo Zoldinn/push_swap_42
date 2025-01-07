@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:50:12 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/07 10:51:06 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/07 11:46:31 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ typedef struct		s_list
 }					t_list;
 
 t_list	*ft_lst_last(t_list *lst);
+void	ft_lst_free(t_list **list);
 void	ft_create_node(t_list **list, int nb);
-void	ft_swap(t_list **list);
-void	ft_rotate(t_list **list);
-void	ft_rev_rotate(t_list **list);
-void	ft_free_list(t_list **list);
-void	ft_push(t_list **a, t_list **b);
+void	ft_swap(t_list **list, char *move);
+void	ft_rotate(t_list **list, char *move);
+void	ft_rev_rotate(t_list **list, char *move);
+void	ft_push(t_list **a, t_list **b, char *move);
 
 #endif
