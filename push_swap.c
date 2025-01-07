@@ -6,20 +6,33 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:57:21 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/07 11:46:28 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/07 16:53:37 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_print_list(t_list *list)
+void	ft_print_list(t_list *a, t_list *b)
 {
-	while (list)
+	while (a || b)
 	{
-		printf("%d\n", list->nb);
-		list = list->next;
+		if (a)
+		{
+			ft_printf("%d ", a->content);
+			a = a->next;
+		}
+		else
+			ft_printf(" ");
+		if (b)
+		{
+			ft_printf("%d", b->content);
+			b = b->next;
+		}
+		else
+			ft_printf(" ");
+		ft_printf("\n");
 	}
-	printf("---\n");
+	ft_printf("---\n");
 }
 
 int	main(void)
@@ -30,33 +43,34 @@ int	main(void)
 	a = NULL;
 	b = NULL;
 
-	ft_create_node(&a, 1);
-	ft_create_node(&a, 4);
-	ft_create_node(&a, 2);
-	ft_create_node(&a, 3);
-	ft_print_list(a);
+	ft_lstadd_back(&a, ft_lstnew(1));
+	ft_lstadd_back(&a, ft_lstnew(2));
+	ft_lstadd_back(&a, ft_lstnew(3));
+	ft_lstadd_back(&a, ft_lstnew(4));
+	ft_print_list(a, b);
 
-	printf("\n--- rotate --- \n");
-	ft_rotate(&a);
-	ft_print_list(a);
+	// rotate
+	ft_rotate(&a, "ra");
+	ft_print_list(a, b);
 
-	printf("\n--- reverse rotate --- \n");
-	ft_rev_rotate(&a);
-	ft_print_list(a);
+	// rev rotate
+	ft_rev_rotate(&a, "rra");
+	ft_print_list(a, b);
 
-	printf("\n--- swap --- \n");
-	ft_swap(&a);
-	ft_print_list(a);
+	// swap
+	ft_swap(&a, "sa");
+	ft_print_list(a, b);
 
-	printf("\n--- push --- \n");
-	ft_push(&a, &b);
-	ft_print_list(a);
-	ft_print_list(b);
+	// push
+	ft_push(&a, &b, "pb");
+	ft_print_list(a, b);
+	// push
+	ft_push(&a, &b, "pb");
+	ft_print_list(a, b);
 
-	printf("\n--- push --- \n");
-	ft_push(&a, &b);
-	ft_print_list(a);
-	ft_print_list(b);
+	// push dans sens inverse
+	ft_push(&b, &a, "pa");
+	ft_print_list(a, b);
 
 	ft_lst_free(&a);
 	ft_lst_free(&b);
