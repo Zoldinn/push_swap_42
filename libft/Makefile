@@ -1,5 +1,7 @@
 NAME = libft.a
 CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+
 SRC = ft_isalpha.c \
 	ft_isdigit.c \
 	ft_isalnum.c \
@@ -40,28 +42,32 @@ SRC_BONUS = ft_lstnew_bonus.c \
 	ft_lstsize_bonus.c \
 	ft_lstlast_bonus.c \
 	ft_lstadd_back_bonus.c \
-	ft_lstmap_bonus.c \
 	ft_lst_free.c
 
-CFLAGS = -Wall -Wextra -Werror
-OBJ = $(SRC:.c=.o)
-OBJ_BONUS = $(SRC_BONUS:.c=.o)
+OBJ_DIR = obj
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+OBJ_BONUS = $(addprefix $(OBJ_DIR)/, $(SRC_BONUS:.c=.o))
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
 
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
 
 bonus: $(OBJ) $(OBJ_BONUS)
 	@ar rcs $(NAME) $(OBJ) $(OBJ_BONUS)
 
 clean:
-	@rm -f $(OBJ) $(OBJ_BONUS)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re bonus

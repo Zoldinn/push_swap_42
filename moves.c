@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:10:17 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/07 16:54:37 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:33:47 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,12 @@ void	ft_push(t_list **a, t_list **b, char *move)
 	*a = (*a)->next;
 	free(tmp);
 	ft_printf("%s\n", move);
+}
+
+void	ft_db(void (*ft)(t_list**, char*), t_list **a, t_list **b, char *m)
+{
+	if (*a)
+		ft(a, m);
+	if (*b)
+		ft(b, m);
 }
