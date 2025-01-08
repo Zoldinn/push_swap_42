@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 SRC = ft_printf.c ft_utils.c
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 

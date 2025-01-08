@@ -1,5 +1,5 @@
 NAME = push_swap
-CFLAGS = -Wall -Wextra -Werror -I ft_printf -I libft
+CFLAGS = -Wall -Wextra -Werror -I ft_printf -I libft -g
 
 OBJ_DIR = obj
 SRC_DIR = src
@@ -7,7 +7,8 @@ LIBFT_DIR = libft
 PRINTF_DIR = ft_printf
 
 SRC = moves.c \
-	push_swap.c
+	push_swap.c \
+	algo.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
