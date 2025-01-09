@@ -6,13 +6,13 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:25:33 by lefoffan          #+#    #+#             */
-/*   Updated: 2024/11/18 15:24:31 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/09 10:28:14 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_count_word(const char *s, char c)
+size_t	ft_count_word(const char *s, char c)
 {
 	size_t	cw;
 

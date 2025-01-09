@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:57:21 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/08 15:18:56 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/08 16:10:50 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@ void	ft_print_list(t_list *a, t_list *b)
 		b = b->next;
 	}
 	ft_printf("\n\n");
-}
-
-int	*ft_get_arg(char **av)
-{
-	int	*tab;
-	int	i;
 }
 
 int	main(int ac, char **av)

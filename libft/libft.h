@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:12:20 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/08 10:26:06 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/09 10:21:51 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int		ft_isascii(int c);
 int		ft_isalpha(int c);
 int		ft_isalnum(int c);
 int		ft_atoi(const char *nptr);
+size_t	ft_count_word(const char *s, char c);
 int		ft_lstsize(t_list *lst);
 
 #endif
