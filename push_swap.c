@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:57:21 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/10 13:57:10 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:01:44 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int ac, char **av)
 		a = NULL;
 		b = NULL;
 
-		a = ft_lst_init(av, ac);
+		a = ft_lst_init(av);
 		if (!a)
 			return (write(2, "Error\n", 6), 1);
 		ft_print_list(a, b);

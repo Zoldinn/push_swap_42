@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 16:10:18 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/10 13:59:32 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:08:31 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ int	ft_is_double(char **av)
 	return (0);
 }
 
-int	ft_check(char **av, int ac)
+int	ft_check(char **av)
 {
 	int		i;
 	int		j;
 
-	if (!av || ft_is_double(av))
+	if (ft_is_double(av))
 		return (0);
-	i = -1;
+	i = 0;
 	while (av[++i])
 	{
 		if (ft_is_too_large(av[i]))
@@ -83,19 +83,16 @@ int	ft_check(char **av, int ac)
 	return (1);
 }
 
-t_list	*ft_lst_init(char **av, int ac)
+t_list	*ft_lst_init(char **av)
 {
 	t_list	*lst;
-	char	**tab;
+	int		i;
 
 	lst = NULL;
-	tab = ft_check(av, ac);
-	if (!tab)
+	if (!ft_check(av))
 		return (NULL);
-	while (*tab)
-	{
-		ft_lstadd_back(&lst, ft_lstnew(ft_atoi(*tab)));
-		tab++;
-	}
+	i = 0;
+	while (av[++i])
+		ft_lstadd_back(&lst, ft_lstnew(ft_atoi(av[i])));
 	return (lst);
 }
