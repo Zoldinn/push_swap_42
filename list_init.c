@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 16:10:18 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/10 11:57:09 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:59:32 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,49 +52,44 @@ int	ft_is_double(char **av)
 		j = i;
 		while (av[++j])
 		{
-			if (ft_strncmp(av[j], av[i], ft_strlen(av[j])) == 0)
+			if (ft_strncmp(av[j], av[i], 11) == 0)
 				return (1);
 		}
 	}
 	return (0);
 }
 
-char	**ft_check(char **av)
+int	ft_check(char **av, int ac)
 {
-	char	**tab;
 	int		i;
 	int		j;
 
-	tab = ft_split(av[1], ' ');
-	if (!tab)
-		return (NULL);
-	if (ft_is_double(tab))
-		return (NULL);
-	i = 0;
-	while (tab[i])
+	if (!av || ft_is_double(av))
+		return (0);
+	i = -1;
+	while (av[++i])
 	{
-		if (ft_is_too_large(tab[i]))
-			return (NULL);
+		if (ft_is_too_large(av[i]))
+			return (0);
 		j = 0;
-		while (tab[i][j])
+		while (av[i][j])
 		{
-			if (((tab[i][j] == '-' || tab[i][j] == '+') && tab[i][j + 1]))
+			if (((av[i][j] == '-' || av[i][j] == '+') && av[i][j + 1]))
 				j++;
-			else if (!ft_isdigit((int) tab[i][j++]))
-				return (NULL);
+			else if (!ft_isdigit((int) av[i][j++]))
+				return (0);
 		}
-		i++;
 	}
-	return (tab);
+	return (1);
 }
 
-t_list	*ft_lst_init(char **av)
+t_list	*ft_lst_init(char **av, int ac)
 {
 	t_list	*lst;
 	char	**tab;
 
 	lst = NULL;
-	tab = ft_check(av);
+	tab = ft_check(av, ac);
 	if (!tab)
 		return (NULL);
 	while (*tab)

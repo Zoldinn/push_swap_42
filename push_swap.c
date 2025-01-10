@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:57:21 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/10 11:51:34 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:57:10 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_print_list(t_list *a, t_list *b)
 
 int	main(int ac, char **av)
 {
-	if (ac > 2)
+	if (ac >= 2)
 	{
 		t_list	*a;
 		t_list	*b;
@@ -39,7 +39,9 @@ int	main(int ac, char **av)
 		a = NULL;
 		b = NULL;
 
-		a = ft_lst_init(av);
+		a = ft_lst_init(av, ac);
+		if (!a)
+			return (write(2, "Error\n", 6), 1);
 		ft_print_list(a, b);
 		ft_lst_free(&a);
 		if (b)
