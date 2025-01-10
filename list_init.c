@@ -6,61 +6,39 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 16:10:18 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/09 11:57:31 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/10 11:57:09 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <limits.h>
-
-/* long int	ft_long_atoi(char *str)
-{
-	long int	res;
-	int			sign;
-
-	sign = 1;
-	res = 0;
-	while (*str == ' ' || *str == '\t' || *str == '\n'
-		|| *str == '\r' || *str == '\v' || *str == '\f')
-		str++;
-	while (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign *= -1;
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		res = (*str * 10) + '0';
-		str++;
-	}
-	return (res * sign);
-}
-
-int	ft_is_too_large(char **av)
-{
-	long int	nb;
-	int			i;
-
-	i = 0;
-	while (av[++i])
-	{
-		nb = ft_long_atoi(av[i]);
-		if (nb <= INT_MIN || nb >= INT_MAX)
-			return (1);
-	}
-	return (0);
-} */
 
 int	ft_is_too_large(char *str)
 {
 	const char	*limit;
-	int			len;
+	size_t		len;
+	int			i;
 
+	if (!str)
+		return (-1);
 	if (*str == '-')
 		limit = "2147483648";
 	else
 		limit = "2147483647";
+	len = ft_strlen(str);
+	if (len > 10)
+		return (1);
+	else if (len < 10)
+		return (0);
+	else
+	{
+		i = -1;
+		while (str[++i])
+		{
+			if (str[i] > limit[i])
+				return (1);
+		}
+		return (0);
+	}
 }
 
 int	ft_is_double(char **av)
@@ -74,34 +52,55 @@ int	ft_is_double(char **av)
 		j = i;
 		while (av[++j])
 		{
-			if (ft_strnstr(av[j], av[i], ft_strlen(av[i])));
+			if (ft_strncmp(av[j], av[i], ft_strlen(av[j])) == 0)
 				return (1);
 		}
 	}
 	return (0);
 }
 
-// cherche la taille du tableau final en faisant count word de chaque av[i]
-// malloc a cette taille
-// ft_split a chaque av[i] et l'ajoute au tableau final
-char	**ft_get_args(char **av)
+char	**ft_check(char **av)
 {
-	int	count;
-	int	i;
+	char	**tab;
+	int		i;
+	int		j;
 
-	count = 0;
+	tab = ft_split(av[1], ' ');
+	if (!tab)
+		return (NULL);
+	if (ft_is_double(tab))
+		return (NULL);
 	i = 0;
-	while (av[++i])
+	while (tab[i])
 	{
-		count += ft_count_word(av[i], ' ')
+		if (ft_is_too_large(tab[i]))
+			return (NULL);
+		j = 0;
+		while (tab[i][j])
+		{
+			if (((tab[i][j] == '-' || tab[i][j] == '+') && tab[i][j + 1]))
+				j++;
+			else if (!ft_isdigit((int) tab[i][j++]))
+				return (NULL);
+		}
+		i++;
 	}
+	return (tab);
 }
 
-// parcours mes args, verifs
-// si verif ok, split la string
-// parcours le tableau de tableau, le transforme en 
-
-t_list	*ft_init_list(char **av)
+t_list	*ft_lst_init(char **av)
 {
+	t_list	*lst;
+	char	**tab;
 
+	lst = NULL;
+	tab = ft_check(av);
+	if (!tab)
+		return (NULL);
+	while (*tab)
+	{
+		ft_lstadd_back(&lst, ft_lstnew(ft_atoi(*tab)));
+		tab++;
+	}
+	return (lst);
 }
