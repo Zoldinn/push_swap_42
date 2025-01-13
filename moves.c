@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:10:17 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/08 14:19:30 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:44:59 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	ft_rev_rotate(t_list **list, char *move)
 	ft_printf("%s", move);
 }
 
+// from lst A to B
 void	ft_push(t_list **a, t_list **b, char *move)
 {
 	t_list	*tmp;

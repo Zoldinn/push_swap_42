@@ -9,6 +9,7 @@ PRINTF_DIR = ft_printf
 SRC = moves.c \
 	push_swap.c \
 	list_init.c \
+	algo_utils.c \
 	algo.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

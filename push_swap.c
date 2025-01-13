@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:57:21 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/10 17:01:44 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:59:15 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_print_list(t_list *a, t_list *b)
 {
+	ft_printf("\n----------\n");
 	ft_printf("a | ");
 	while (a)
 	{
@@ -26,7 +27,7 @@ void	ft_print_list(t_list *a, t_list *b)
 		ft_printf("%d, ", b->content);
 		b = b->next;
 	}
-	ft_printf("\n\n");
+	ft_printf("\n----------\n");
 }
 
 int	main(int ac, char **av)
@@ -42,6 +43,8 @@ int	main(int ac, char **av)
 		a = ft_lst_init(av);
 		if (!a)
 			return (write(2, "Error\n", 6), 1);
+		ft_print_list(a, b);
+		ft_sort(&a, &b);
 		ft_print_list(a, b);
 		ft_lst_free(&a);
 		if (b)
