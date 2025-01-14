@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:55:32 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/13 17:57:30 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:18:46 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,12 @@ int	ft_get_dist(t_list *a, t_list *target)
 	return (dist);
 }
 
-void	ft_move_min_to_top(t_list **a)
+void	ft_move_to_top(t_list **a, t_list *target)
 {
-	t_list	*min;
 	int		dist;
 	int		size;
 
-	min = ft_get_min(*a);
-	dist = ft_get_dist(*a, min);
+	dist = ft_get_dist(*a, target);
 	size = ft_lstsize(*a);
 	if (dist > size / 2)
 	{

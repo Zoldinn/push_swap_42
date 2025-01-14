@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:12:20 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/13 14:05:03 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:39:06 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct s_list
 {
 	int				content;
+	int				index;
 	struct s_list	*next;
 }					t_list;
 

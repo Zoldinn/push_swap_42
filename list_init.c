@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 16:10:18 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/13 14:05:15 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:16:35 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,28 @@ t_list	*ft_lst_init(char **av)
 	i = 0;
 	while (av[++i])
 		ft_lstadd_back(&lst, ft_lstnew(ft_atoi(av[i])));
+	ft_set_index(&lst);
 	return (lst);
+}
+
+void	ft_set_index(t_list **a)
+{
+	int		smaller;
+	t_list	*cur;
+	t_list	*tmp;
+
+	cur = *a;
+	while (cur)
+	{
+		smaller = 0;
+		tmp = *a;
+		while (tmp)
+		{
+			if (cur->content > tmp->content)
+				smaller += 1;
+			tmp = tmp->next;
+		}
+		cur->index = smaller;
+		cur = cur->next;
+	}
 }

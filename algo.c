@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:22:23 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/13 17:57:17 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:20:03 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,13 @@ void	ft_sort_four(t_list **a, t_list **b)
 	i = 0;
 	while (i++ < chunk)
 	{
-		ft_move_min_to_top(a);
+		ft_move_to_top(a, ft_get_min(*a));
 		ft_push(a, b, "pb\n");
 	}
 	ft_sort_three(a);
 	while (chunk--)
 		ft_push(b, a, "pa\n");
 }
-
-
 
 void	ft_sort(t_list **a, t_list **b)
 {
