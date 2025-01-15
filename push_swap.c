@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:57:21 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/14 15:21:10 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:54:16 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,27 +48,55 @@ void	pindex(t_list *a)
 	}
 	ft_printf("\n");
 }
+char	**get_arg(int ac, char **av)
+{
+	char	**split;
+	int		i;
+
+	if (ac == 2)
+		split = ft_split(av[1], ' ');
+	else
+	{
+		i = 0;
+		split = malloc(sizeof(char *) * ac);
+		while (i < ac - 1)
+		{
+			split[i] = ft_strdup(av[i + 1]);
+			i++;
+		}
+		split[i] = NULL;
+	}
+	return (split);
+}
 
 int	main(int ac, char **av)
 {
-	if (ac >= 2)
-	{
-		t_list	*a;
-		t_list	*b;
+	t_list	*a;
+	t_list	*b;
+	char	**split;
+	int		i;
 
-		a = NULL;
-		b = NULL;
+	if (ac < 2)
+		return (1);
 
-		a = ft_lst_init(av);
-		if (!a)
-			return (write(2, "Error\n", 6), 1);
-		pindex(a);
-		ft_sort(&a, &b);
-		pindex(a);
-		ft_lst_free(&a);
-		if (b)
-			ft_lst_free(&b);
-		return (0);
-	}
-	return (1);
+	a = NULL;
+	b = NULL;
+	split = get_arg(ac, av);
+	if (!split)
+		return (1);
+	a = ft_lst_init(split);
+	if (!a)
+		return (write(2, "Error\n", 6), 1);
+
+	ft_sort(&a, &b);
+
+	ft_lst_free(&a);
+	if (b)
+		ft_lst_free(&b);
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
+	
+	return (0);
 }

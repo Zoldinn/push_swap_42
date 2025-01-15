@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 16:10:18 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/14 15:16:35 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:20:15 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ t_list	*ft_lst_init(char **av)
 	if (!ft_check(av))
 		return (NULL);
 	i = 0;
-	while (av[++i])
-		ft_lstadd_back(&lst, ft_lstnew(ft_atoi(av[i])));
+	while (av[i])
+		ft_lstadd_back(&lst, ft_lstnew(ft_atoi(av[i++])));
 	ft_set_index(&lst);
 	return (lst);
 }
