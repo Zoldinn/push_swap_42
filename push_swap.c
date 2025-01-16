@@ -6,13 +6,13 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:57:21 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/15 16:54:16 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:32:47 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_print_list(t_list *a, t_list *b)
+void	print(t_list *a, t_list *b)
 {
 	ft_printf("\n----------\n");
 	ft_printf("a | ");
