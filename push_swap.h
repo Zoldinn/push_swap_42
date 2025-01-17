@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:50:12 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/14 15:15:59 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/17 19:12:43 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_push(t_list **a, t_list **b, char *move);
 void	ft_sort(t_list **a, t_list **b);
 void	ft_move_to_top(t_list **a, t_list *target);
 void	ft_set_index(t_list **a);
+t_list	*ft_get_closer(t_list *lst, t_list *node);
 t_list	*ft_get_min(t_list *a);
 t_list	*ft_get_max(t_list *a);
 t_list	*ft_lst_init(char **av);

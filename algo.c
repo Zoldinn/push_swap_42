@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:22:23 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/16 19:20:41 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/17 19:17:14 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,6 @@ void	ft_sort_twelve(t_list **a, t_list **b)
 		ft_push(b, a, "pa\n");
 }
 
-/* void	ft_sort_jsp(t_list **a, t_list **b)
-{
-	t_list	*cur;
-
-	cur = *a;
-	while (cur)
-	{
-		if (cur->content > cur->next->content)
-			ft_push(a, b, "pb\n");
-		else if (cur->content < ft_lstlast(cur)->content)
-		{
-			ft_rev_rotate(a, "rra\n");
-			ft_push(a, b, "pb\n");
-		}
-		else if (cur->content)
-	}
-} */
-
 t_list	*get_cheap(t_list *a)
 {
 	t_list	*cheap;
@@ -100,6 +82,18 @@ t_list	*get_cheap(t_list *a)
 	return (cheap);
 }
 
+void	ft_sort_b(t_list **b)
+{
+	t_list	*top;
+
+	if (!*b || !(*b)->next)
+		return ;
+	top = *b;
+	if (top == ft_get_min(*b) && top != ft_lstlast(*b))
+		ft_rotate(b, "rb\n");
+	if ((*b)->content < (*b)->next)
+}
+
 void	ft_sort_jsp2(t_list **a, t_list **b)
 {
 	t_list	*to_push;
@@ -108,26 +102,12 @@ void	ft_sort_jsp2(t_list **a, t_list **b)
 	{
 		to_push = get_cheap(*a);
 		ft_move_to_top(a, to_push);
-		if () // chercher un nouveau plus petit si to push est pas a la suite dans b
-		// if (*b && (*b)->next && (*b)->content < (*b)->next->content)
-		// 	ft_rotate(b, "rb\n");
 		ft_push(a, b, "pb\n");
+		ft_sort_b(b);
 	}
 	while (*b)
 		ft_push(b, a, "pa\n");
 }
-
-
-/* void	ft_sort_jsp3(t_list **a, t_list **b)
-{
-	while (*a)
-	{
-		ft_move_to_top(a, ft_get_min(*a));
-		ft_push(a, b, "pb\n");
-	}
-	while (*b)
-		ft_push(b, a, "pa\n");
-} */
 
 void	ft_sort(t_list **a, t_list **b)
 {

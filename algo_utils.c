@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:55:32 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/16 14:47:22 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/17 19:12:24 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,18 @@ void	ft_move_to_top(t_list **a, t_list *target)
 		while (dist--)
 			ft_rotate(a, "ra\n");
 	}
+}
+// search the closer element of lst for node
+t_list	*ft_get_closer(t_list *lst, t_list *node)
+{
+	t_list	*closer;
+
+	closer = lst;
+	while (lst)
+	{
+		if (node->index - closer->index > node->index - lst->index)
+			closer = lst;
+		lst = lst->next;
+	}
+	return (closer);
 }
