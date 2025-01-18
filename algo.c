@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:22:23 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/17 19:17:14 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/19 00:27:51 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,6 @@ void	ft_sort_six(t_list **a, t_list **b)
 		ft_push(b, a, "pa\n");
 }
 
-void	ft_sort_twelve(t_list **a, t_list **b)
-{
-	while ((*a)->index < 6)
-	{
-		ft_move_to_top(a, ft_get_min(*a));
-		ft_push(a, b, "pb\n");
-	}
-	ft_sort_six(a, b);
-	while (*b)
-		ft_push(b, a, "pa\n");
-}
-
 t_list	*get_cheap(t_list *a)
 {
 	t_list	*cheap;
@@ -68,7 +56,7 @@ t_list	*get_cheap(t_list *a)
 	cur = a;
 	cheap = a;
 	size = ft_lstsize(a);
-	quarter = size / 4;
+	quarter = size / 4; // par 2, ca trie bien, mais en trop de coups..
 	while (cur)
 	{
 		dist = ft_get_dist(a, cur);
@@ -91,7 +79,13 @@ void	ft_sort_b(t_list **b)
 	top = *b;
 	if (top == ft_get_min(*b) && top != ft_lstlast(*b))
 		ft_rotate(b, "rb\n");
-	if ((*b)->content < (*b)->next)
+	if (top != ft_get_max(*b) && top->next == ft_get_max(*b))
+		ft_swap(b, "sb\n");
+	/*if (top->index < ft_get_max(*b)->index
+		&& top->index > ft_get_min(*b)->index)
+	{
+		
+	}*/
 }
 
 void	ft_sort_jsp2(t_list **a, t_list **b)
@@ -116,6 +110,8 @@ void	ft_sort(t_list **a, t_list **b)
 	size = ft_lstsize(*a);
 	if (size <= 3)
 		ft_sort_three(a);
+	else if (size <= 6)
+		ft_sort_six(a, b);
 	else
 		ft_sort_jsp2(a, b);
 }
