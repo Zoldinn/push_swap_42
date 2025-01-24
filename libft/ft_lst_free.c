@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:01:26 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/07 16:56:16 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:02:26 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,12 @@ void	ft_lst_free(t_list **lst)
 
 	if (!*lst)
 		return ;
-	while (*lst)
+	tmp = *lst;
+	while ((*lst)->next)
 	{
 		tmp = (*lst)->next;
 		free(*lst);
 		*lst = tmp;
 	}
-	lst = NULL;
 	free(tmp);
-	tmp = NULL;
 }

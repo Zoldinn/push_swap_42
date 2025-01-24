@@ -10,7 +10,7 @@ $(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
 
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
-	cc $(CFLAGS) -c $< -o $@
+	@cc $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)

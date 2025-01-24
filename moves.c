@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:10:17 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/14 15:44:15 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:37:47 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_rotate(t_list **list, char *move)
 	t_list	*tmp;
 
 	tmp = *list;
-	*list = (*list)->next;  
+	*list = (*list)->next;
 	ft_lstlast(*list)->next = tmp;
 	tmp->next = NULL;
 	ft_printf("%s", move);
@@ -57,7 +57,6 @@ void	ft_push(t_list **a, t_list **b, char *move)
 	if (!(*a))
 		return ;
 	ft_lstadd_front(b, ft_lstnew((*a)->content));
-	(*b)->index = (*a)->index;
 	tmp = *a;
 	*a = (*a)->next;
 	free(tmp);

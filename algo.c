@@ -6,7 +6,7 @@
 /*   By: lefoffan <lefoffan@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:22:23 by lefoffan          #+#    #+#             */
-/*   Updated: 2025/01/21 19:16:20 by lefoffan         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:34:49 by lefoffan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_sort_three(t_list **a)
 {
 	int	i;
-		
+
 	i = 0;
 	while (i++ < 3)
 	{
@@ -49,20 +49,20 @@ t_list	*get_cheap(t_list *a)
 {
 	t_list	*cheap;
 	t_list	*cur;
-	int		quarter;
+	int		chunk;
 	int		dist;
 
 	cur = a;
 	cheap = a;
-	quarter = ft_lstsize(a) / 2;
-	if (ft_lstsize(a) >= 60)
-		quarter = ft_lstsize(a) / 4;
+	chunk = ft_lstsize(a) / 2;
+	if (ft_lstsize(a) >= 100)
+		chunk = ft_lstsize(a) / 20;
 	else if (ft_lstsize(a) >= 20)
-		quarter = ft_lstsize(a) / 3;
+		chunk = 5;
 	while (cur)
 	{
 		dist = get_dist(a, cur);
-		if (dist <= quarter || dist >= (ft_lstsize(a) - quarter))
+		if (dist <= chunk || dist >= (ft_lstsize(a) - chunk))
 		{
 			if (cheap->content > cur->content)
 				cheap = cur;
@@ -72,47 +72,41 @@ t_list	*get_cheap(t_list *a)
 	return (cheap);
 }
 
-void	ft_sort_jsp2(t_list **a, t_list **b)
+int	get_dist_b(t_list **b, t_list *to_push)
+{
+	if (to_push->content < ft_get_min(*b)->content)
+		return (get_dist(*b, ft_get_min(*b)) + 1);
+	else if (to_push->content > ft_get_max(*b)->content)
+		return (get_dist(*b, ft_get_max(*b)));
+	else
+		return (get_dist(*b, get_smaller(*b, to_push)));
+}
+
+void	ft_sort(t_list **a, t_list **b)
 {
 	t_list	*to_push;
 	int		dist_a;
 	int		dist_b;
 
-	while (*a)
-	{
-		to_push = get_cheap(*a);
-		// move(ft_lstsize(*a), get_dist(*a, to_push), a, "a");
-		dist_a = get_dist(*a, to_push);
-		if (ft_lstsize(*b) >= 2)
-		{
-			if (to_push->content < ft_get_min(*b)->content)
-				dist_b = get_dist(*b, ft_get_min(*b)) + 1;
-				// move(ft_lstsize(*b), get_dist(*b, ft_get_min(*b)) + 1, b, "b");
-			else if (to_push->content > ft_get_max(*b)->content)
-				dist_b = get_dist(*b, ft_get_max(*b));
-				// move(ft_lstsize(*b), get_dist(*b, ft_get_max(*b)), b, "b");
-			else
-				dist_b = get_dist(*b, get_smaller(*b, to_push));
-				// move(ft_lstsize(*b), get_dist(*b, get_smaller(*b, to_push)), b, "b");
-		}
-		move_both(dist_a, dist_b, a, b);
-		ft_push(a, b, "pb\n");
-	}
-	while (ft_lstlast(*b) != ft_get_min(*b))
-		ft_rev_rotate(b, "rrb\n");
-	while (*b)
-		ft_push(b, a, "pa\n");
-}
-
-void	ft_sort(t_list **a, t_list **b)
-{
-	int	size;
-
-	size = ft_lstsize(*a);
-	if (size <= 3)
+	if (ft_lstsize(*a) <= 3)
 		ft_sort_three(a);
-	else if (size <= 6)
+	else if (ft_lstsize(*a) <= 6)
 		ft_sort_six(a, b);
 	else
-		ft_sort_jsp2(a, b);
+	{
+		while (*a && ft_lstsize(*a) > 6)
+		{
+			to_push = get_cheap(*a);
+			dist_a = get_dist(*a, to_push);
+			if (ft_lstsize(*b) >= 2)
+				dist_b = get_dist_b(b, to_push);
+			move_both(dist_a, dist_b, a, b);
+			ft_push(a, b, "pb\n");
+		}
+		ft_sort_six(a, b);
+		while (ft_lstlast(*b) != ft_get_min(*b))
+			ft_rev_rotate(b, "rrb\n");
+		while (*b)
+			ft_push(b, a, "pa\n");
+	}
 }

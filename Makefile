@@ -2,15 +2,15 @@ NAME = push_swap
 CFLAGS = -Wall -Wextra -Werror -I ft_printf -I libft -g
 
 OBJ_DIR = obj
-SRC_DIR = src
 LIBFT_DIR = libft
 PRINTF_DIR = ft_printf
 
 SRC = moves.c \
 	push_swap.c \
 	list_init.c \
+	algo.c \
 	algo_utils.c \
-	algo.c
+	algo_utils2.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
@@ -20,29 +20,38 @@ PRINTF = $(PRINTF_DIR)/libftprintf.a
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) $(PRINTF)
-	cc $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
+	@echo "🔨 Compilation de $(NAME)..."
+	@cc $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
+	@echo "✅ Compilation réussie !"
 
 $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
-	cc $(CFLAGS) -c $< -o $@
+	@echo "🔧 Compilation de $<..."
+	@cc $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)
 
 $(LIBFT):
-	make -C $(LIBFT_DIR) bonus
+	@echo "📦 Compilation de la libft..."
+	@make -s -C $(LIBFT_DIR) bonus
 
 $(PRINTF):
-	make -C $(PRINTF_DIR)
+	@echo "📦 Compilation de ft_printf..."
+	@make -s -C $(PRINTF_DIR)
 
 clean:
+	@echo "🧹 Nettoyage des fichiers objets..."
 	@rm -rf $(OBJ_DIR)
-	make -C $(LIBFT_DIR) clean
-	make -C $(PRINTF_DIR) clean
+	@make -s -C $(LIBFT_DIR) clean
+	@make -s -C $(PRINTF_DIR) clean
+	@echo "✅ Nettoyage terminé !"
 
 fclean: clean
+	@echo "🗑️ Suppression de $(NAME)..."
 	@rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
-	make -C $(PRINTF_DIR) fclean
+	@make -s -C $(LIBFT_DIR) fclean
+	@make -s -C $(PRINTF_DIR) fclean
+	@echo "✅ Tout a été supprimé !"
 
 re: fclean all
 
